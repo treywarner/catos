@@ -1,0 +1,28 @@
+#!/bin/bash
+
+echo "Hello, World!"
+# \`\`\`
+# 
+# You can save this script in a file with a .sh extension, for example, hello_world.sh. Make sure to give execute
+#  permissions to the file using the chmod command:
+# 
+# \`\`\`bash
+# chmod +x hello_world.sh
+# \`\`\`
+# 
+# Then, you can run the script from the terminal:
+# 
+# \`\`\`bash
+# ./hello_world.sh
+# \`\`\`
+# 
+# When executed, it will display the output:
+# 
+# \`\`
+# Hello, World!
+# \`\`\`
+# 
+# That's it! This script just contains a single line that uses the echo command to print the text "Hello, World!"
+#  to the console.
+# 
+# 
