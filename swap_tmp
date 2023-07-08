@@ -1,28 +1,44 @@
-#!/bin/bash
+Script started on 2023-07-08 09:29:31-04:00 [TERM="xterm-256color" TTY="/dev/pts/0" COLUMNS="115" LINES="35"]
+⣾  Loading⣽  Loading⣻  Loading⢿  Loading⡿  Loading⣟  Loading⣯  Loading⣷  Loading⣾  Loading⣽  Loading⣻  Loading⢿  Loading⡿  Loading⣟  Loading⣯  Loading⣷  Loading⣾  Loading⣽  Loading⣻  Loading⢿  Loading⡿  Loading⣟  Loading          I've edited the code you provided. Here is my file: #!/bin/bash
 
-echo "Hello, World!"
-# \`\`\`
+# Function to run the program
+function run_program() {
+    echo "Running the program..."
+    # Replace the following line with the command or program you want to run
+    # For example: /path/to/your/program
+    ./your_program
+}
+
+# Trap the Ctrl+i signal
+trap run_program SIGINT
+
+# Main loop
+while true; do
+    read -rsn1 input
+
+    # Check if the input is Control+i (ASCII value 9)
+    if [[  == $'\x09' ]]; then
+        run_program
+    fi
+done
+# \\`\\`\\`
 # 
-# You can save this script in a file with a .sh extension, for example, hello_world.sh. Make sure to give execute
-#  permissions to the file using the chmod command:
+# In this script, the run_program function is defined to execute the desired program. You should replace the line 
+# ./your_program with the actual command or path to your program.
 # 
-# \`\`\`bash
-# chmod +x hello_world.sh
-# \`\`\`
+# The trap command is used to capture the SIGINT signal, which is generated when you press Control+i.
 # 
-# Then, you can run the script from the terminal:
+# The script enters a main loop and reads a single character from the user. If the input is Control+i (ASCII value 9
+# ), it calls the run_program function.
 # 
-# \`\`\`bash
-# ./hello_world.sh
-# \`\`\`
+# Make sure to save the script in a file (e.g., program_runner.sh) and make it executable with the command chmod +
+# x program_runner.sh. Then you can run the script by executing ./program_runner.sh in the terminal.
 # 
-# When executed, it will display the output:
+# Please note that this script assumes you are using Control+i specifically. If you want to use a different key
+#  combination, you will need to modify the script accordingly.
 # 
-# \`\`
-# Hello, World!
-# \`\`\`
-# 
-# That's it! This script just contains a single line that uses the echo command to print the text "Hello, World!"
-#  to the console.
-# 
-# 
+#  Pay attention to the edited code and base your changes off of that rather than the original. However, I still need your help: how do i make this work on the computer, not in the program. Give me the code snippet of the whole script
+
+Error: 速率限制，请重试。
+Rate limit reached, please try again.
+

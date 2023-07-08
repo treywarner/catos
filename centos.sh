@@ -1,6 +1,6 @@
 #!/bin/bash
 
-. $COSH_PATH/centos_gvars
+. $CENTOS_PATH/centos_gvars
 prompter="centos_prompt.sh"
 export FIRST=0
 export LOCAL=0
@@ -15,7 +15,7 @@ while getopts 'l:rxne' OPTION; do
       		export FIRST=1
 		;;
     	r)
-		cat $COSH_PATH/temp/$centos_fname > $centos_file
+		cat $CENTOS_PATH/temp/$centos_fname > $centos_file
 		exit
 		;;
     	x)
@@ -23,7 +23,7 @@ while getopts 'l:rxne' OPTION; do
 		exit
 		;;
     	e)
-		$EDITOR $centos_file
+		$CENTOS_EDITOR $centos_file
 		exit
 		;;
     	?)
@@ -36,7 +36,7 @@ shift $((OPTIND-1))
 
 if [[ $FIRST == 1 ]]
 then
-	file=$COSH_PATH/centos_files/centos.sh
+	file=$CENTOS_PATH/centos_files/centos.sh
 	fname=centos.sh
 	if [[ $LOCAL == 1 ]]
 	then
@@ -45,15 +45,15 @@ then
 	fi
       	tgpt -f
       	prompter="centos_new_prompt.sh"
-	echo "centos_file=$file" > $COSH_PATH/centos_gvars
-	printf "centos_fname=$fname" >> $COSH_PATH/centos_gvars
-      	touch $COSH_PATH/temp/$fname
+	echo "centos_file=$file" > $CENTOS_PATH/centos_gvars
+	printf "centos_fname=$fname" >> $CENTOS_PATH/centos_gvars
+      	touch $CENTOS_PATH/temp/$fname
 	touch $file
 fi
 
 
-. $COSH_PATH/centos_gvars
-input_file=$COSH_PATH/temp/$centos_fname
+. $CENTOS_PATH/centos_gvars
+input_file=$CENTOS_PATH/temp/$centos_fname
 
 if [[ $1 == "" ]]
 then
@@ -63,7 +63,7 @@ fi
 echo "" > $input_file
 
 
-script -q -c "tgpt \"$($COSH_PATH/$prompter "$1")\"" $input_file
+script -q -c "tgpt \"$($CENTOS_PATH/$prompter "$1")\"" $input_file
 sed -i "s|||g" $input_file
 sed -i -E "s/\x1B\[[0-9;]*[a-zA-Z]//g" $input_file
 
@@ -85,11 +85,11 @@ then
 	cat $input_file > $centos_file
 	chmod +x $centos_file
 else
-	cat $centos_file > $COSH_PATH/swap_tmp
+	cat $centos_file > $CENTOS_PATH/swap_tmp
 	cat $input_file > $centos_file
-	cat $COSH_PATH/swap_tmp > $input_file
+	cat $CENTOS_PATH/swap_tmp > $input_file
 
 	read -p "Press enter to see diff"
 
-	diff -u $input_file $centos_file | colordiff
+	$CENTOS_DIFF -u $input_file $centos_file | colordiff
 fi
