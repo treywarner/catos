@@ -53,7 +53,7 @@ loading() {
 
 
 
-prompter="catos_prompt.sh"
+prompter="prompt"
 export FIRST=0
 export LOCAL=0
 export FNAME=0
@@ -90,15 +90,15 @@ shift $((OPTIND-1))
 
 if [[ $FIRST == 1 ]]
 then
-   file=$CATOS_PATH/catos_files/catos.sh
-   sfile=$CATOS_PATH/catos_saves/catos.sh
+   file=$CATOS_PATH/files/catos.sh
+   sfile=$CATOS_PATH/saves/catos.sh
    if [[ $LOCAL == 1 ]]
    then
       file="$(pwd)/$FNAME"
       sfile=$CATOS_PATH/catos_saves/$FNAME
    fi
    tgpt -f > /dev/null
-   prompter="catos_new_prompt.sh"
+   prompter="new_prompt"
    echo "catos_file=$file" > $CATOS_PATH/catos_gvars
    printf "catos_sfile=$sfile" >> $CATOS_PATH/catos_gvars
    touch $sfile $file
@@ -116,7 +116,7 @@ then
    echo "Error: no prompt"
    exit 1
 fi
-prompt=$($CATOS_PATH/$prompter "$1")
+prompt=$($CATOS_PATH/prompts/$prompter "$1")
 
 cat $catos_file > $catos_sfile
 echo "" > $catos_file	
