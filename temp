@@ -1,0 +1,47 @@
+Certainly! Here's an updated version of the script that displays a loading animation taking up more space on the screen:
+
+```bash
+#!/bin/bash
+
+loading() {
+  local pid=$1
+  local delay=0.1
+  local spin='-\|/'
+
+  tput civis # Hide the cursor
+
+  while kill -0 $pid 2>/dev/null; do
+    printf '\r'
+    local cols=$(tput cols)
+    local spaces=$((cols / 2))
+    printf ' %.0s' $(seq 1 $spaces)
+    printf 'Loading... %s' "${spin:i++%${#spin}:1}"
+    sleep $delay
+  done
+
+  tput cnorm # Restore the cursor
+}
+
+# Run your command here
+tgpt "hi" > /dev/null &
+
+# Save the PID of the command
+command_pid=$!
+
+# Start the loading animation
+loading $command_pid
+
+# Wait for the command to finish
+wait $command_pid
+
+# Add a new line after the command finishes
+echo
+```
+
+In this updated version, the `loading()` function has been modified to calculate the number of spaces needed to take up half of the terminal width (`cols`). The loading animation is then displayed after the spaces, resulting in a centered loading message.
+
+The `tput civis` command is used to hide the cursor before starting the loading animation, and `tput cnorm` is used to restore the cursor after the command finishes.
+
+Feel free to adjust the `delay` variable in the `loading()` function to control the speed of the animation (smaller values make it faster).
+
+Please note that the script assumes you have the necessary permissions to execute scripts and run the `tgpt` command.
