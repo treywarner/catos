@@ -35,5 +35,6 @@ Link catos to a bin folder to easily use it.
 - -n starts a new script. without this it continues your previous chat
 - -l arg saves the program in your local director under the name arg
 - -e opens your editor for the script
+- -v prints the script, to redirect
 - -r reverts the changes of an ongoing chat
 - -x executes the shell script

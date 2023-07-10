@@ -57,7 +57,7 @@ prompter="prompt"
 export FIRST=0
 export LOCAL=0
 export FNAME=0
-while getopts 'l:rxne' OPTION; do
+while getopts 'l:rxnev' OPTION; do
    case "$OPTION" in
       l)
          export LOCAL=1
@@ -76,6 +76,10 @@ while getopts 'l:rxne' OPTION; do
          ;;
       e)
          $CATOS_EDITOR $catos_file
+         exit
+         ;;
+      v)
+         cat $catos_file
          exit
          ;;
       ?)
